@@ -14,12 +14,20 @@ benthic <- rast('data/GBR10 GBRMP Benthic.tif')
 benthic
 crs(benthic)
 
+#agg_benthic <- terra::aggregate(benthic, fact = 20)
+agg_benthic <- rast('processed_data/agg100_GBR10.tif')
+agg_benthic
+
 # basic plot
 plot(benthic)
 
 # tmap plot ----
 # too big, try aggregating times 10
-agg_benthic <- terra::aggregate(benthic, fact = 20)
+
+qtm(agg_benthic)
 
 tm_shape(agg_benthic) +
-  tm_raster()
+  tm_raster(title = "Classifcations") +
+  tm_layout(legend.position = c("RIGHT", "top"),
+            bg.color = "steelblue4")
+
