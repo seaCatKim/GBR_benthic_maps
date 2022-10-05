@@ -25,6 +25,10 @@ benthic <- pin_download(gbrmpa_board, 'GBR10_Benthic') %>% rast()
 benthic
 crs(benthic)
 
+#agg_benthic <- terra::aggregate(benthic, fact = 20)
+agg_benthic <- rast('processed_data/agg100_GBR10.tif')
+agg_benthic
+
 # basic plot
 plot(benthic)
 qtm(benthic)
@@ -34,10 +38,11 @@ qtm(benthic)
 #agg_benthic <- terra::aggregate(benthic, fun = "modal", fact = 100)
 #writeRaster(agg_benthic, 'processed_data/agg100_GBR10.tif')
 
-x <- rast('processed_data/agg100_GBR10.tif')
-plot(x)
-qtm(x) #looks like has nas?
 plot(agg_benthic)
+qtm(agg_benthic)
 
 tm_shape(agg_benthic) +
-  tm_raster()
+  tm_raster(title = "Classifcations") +
+  tm_layout(legend.position = c("RIGHT", "top"),
+            bg.color = "steelblue4")
+
