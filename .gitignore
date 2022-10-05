@@ -2,8 +2,9 @@
 .Rhistory
 .RData
 .Ruserdata
-
 # data esp spatial files
 data/
 processed_data/
 
+# Caro's file
+CaroSC_RemoteSensing_Fig6.R
